@@ -1,83 +1,168 @@
-# Booking System Documentation TODO (Progress Tracking)
+# Booking System Build TODO (Step-by-Step Implementation Manual)
 
-This file tracks documentation features, steps, owners, and status for the language-agnostic booking-system blueprint.
+This TODO is a practical build checklist for creating a full booking system from scratch.
 
-## Status Legend
+- Keep every item unchecked until implemented and verified.
+- This list is implementation-oriented (product/system delivery), not repository maintenance.
+- Use it as a vibe-coding execution path for any language stack.
 
-- [ ] Not started
-- [~] In progress
-- [x] Done
+## Phase 0 — Project Setup and Decisions
 
-## Epic 1: Core Documentation Backbone
+- [ ] Confirm target programming language and framework with user.
+- [ ] Confirm deployment target (local Docker only, VPS, cloud, Kubernetes).
+- [ ] Confirm primary database choice and version.
+- [ ] Confirm authentication methods (email/password, OAuth providers).
+- [ ] Confirm booking domain scope (rooms, resources, capacities, schedules).
+- [ ] Confirm required locales and default language.
+- [ ] Confirm timezone strategy (single timezone vs multi-timezone).
+- [ ] Confirm legal/security constraints (OWASP ASVS level, privacy requirements).
 
-- [x] Create system overview (`01-system-overview.md`)
-- [x] Create docker runtime documentation (`02-docker-runtime.md`)
-- [x] Create backend architecture documentation (`03-backend.md`)
-- [x] Create frontend architecture documentation (`04-frontend.md`)
-- [x] Create data models and configuration documentation (`05-data-models-and-config.md`)
-- [x] Create API reference (`06-api-reference.md`)
-- [x] Create user flows (`07-user-flows.md`)
-- [x] Create rebuild prompts (`08-rebuild-prompts.md`)
+## Phase 1 — Architecture and Contracts
 
-## Epic 2: Security and Compliance (ASVS)
+- [ ] Define architecture layers (API/controllers, services/use-cases, repositories, integrations).
+- [ ] Define domain entities: User, Booking, Room, SiteConfig, Translation.
+- [ ] Define role and permission model (guest/user/moderator/admin/super_admin).
+- [ ] Define booking status lifecycle (pending/approved/rejected/canceled).
+- [ ] Define API contract draft (auth, bookings, admin, config, translations, health).
+- [ ] Define error model and consistent response shape.
+- [ ] Define validation rules and schema strategy.
+- [ ] Define logging, auditing, and observability plan.
 
-- [x] Add ASVS security matrix (`09-security-asvs-matrix.md`)
-- [ ] Add threat model and abuse case catalog
-- [ ] Add endpoint authorization matrix by role and permission
-- [ ] Add security testing playbook and evidence template
-- [ ] Add audit logging and incident response documentation
+## Phase 2 — Dockerized Runtime Foundation
 
-## Epic 3: Environment and Secrets Governance
+- [ ] Create Dockerfiles for backend and frontend.
+- [ ] Create docker-compose with backend, frontend, database, cache.
+- [ ] Add health checks for app and database services.
+- [ ] Configure persistent volumes for stateful services.
+- [ ] Configure reverse-proxy/TLS entry strategy.
+- [ ] Verify full local startup with one command.
 
-- [x] Add ENV and secrets contract (`10-env-and-secrets-contract.md`)
-- [ ] Create canonical environment variable registry table (name/type/default/secret)
-- [ ] Add secret rotation runbook
-- [ ] Add CI policy for hardcoded-secret detection
+## Phase 3 — Environment and Secrets
 
-## Epic 4: Architecture Standards
+- [ ] Create `.env.example` with all required variables.
+- [ ] Implement startup validation for required env vars.
+- [ ] Ensure no hardcoded secrets in code/config/tests.
+- [ ] Add secret scanning to CI pipeline.
+- [ ] Define secret rotation process and emergency rotation steps.
 
-- [x] Add language-agnostic architecture rules (`11-language-agnostic-architecture-rules.md`)
-- [ ] Add error model and standard API error schema
-- [ ] Add idempotency and concurrency design note
-- [ ] Add module boundary examples and anti-patterns
+## Phase 4 — Backend Core
 
-## Epic 5: Quality and Delivery
+- [ ] Implement backend project skeleton and dependency setup.
+- [ ] Implement database connection module.
+- [ ] Implement repositories for users and bookings.
+- [ ] Implement configuration service (site config + rooms config loading).
+- [ ] Implement translation service.
+- [ ] Implement centralized error handling middleware.
+- [ ] Implement request validation middleware.
+- [ ] Implement rate limiting middleware.
+- [ ] Implement authentication middleware.
+- [ ] Implement RBAC/permission middleware.
 
-- [x] Add quality gates and DoD (`12-quality-gates-and-dod.md`)
-- [ ] Add CI pipeline quality gate mapping (per stage)
-- [ ] Add benchmark/performance acceptance thresholds
-- [ ] Add release-readiness and rollback checklist template
+## Phase 5 — Authentication and User Management
 
-## Epic 6: AI Agent Protocol
+- [ ] Implement signup initialization endpoint (anti-bot flow).
+- [ ] Implement signup endpoint with password hashing.
+- [ ] Implement login endpoint and token issue flow.
+- [ ] Implement token verification endpoint.
+- [ ] Implement logout/token revocation flow.
+- [ ] Implement profile read/update endpoints.
+- [ ] Implement password change endpoint.
+- [ ] Implement OAuth login flow (e.g., Google).
+- [ ] Implement user status handling (pending/active/blocked).
+- [ ] Implement admin user management endpoints (role/status/delete).
 
-- [x] Add AI agent execution protocol (`13-ai-agent-execution-protocol.md`)
-- [ ] Add ADR template file in docs
-- [ ] Add implementation milestone template for agents
-- [ ] Add mandatory handoff artifact checklist template
+## Phase 6 — Booking Engine
 
-## Epic 7: Documentation Hygiene
+- [ ] Implement booking creation endpoint (single slot).
+- [ ] Implement recurring booking creation endpoint.
+- [ ] Implement booking conflict detection.
+- [ ] Implement multi-slot booking support (slots/start/end/duration).
+- [ ] Implement booking approval policy by role/permission.
+- [ ] Implement booking query/list endpoints for calendar consumption.
+- [ ] Implement authenticated cancellation flow.
+- [ ] Implement public cancellation eligibility/check flow.
+- [ ] Implement public cancellation confirmation flow.
+- [ ] Implement booking status endpoint.
+- [ ] Implement booking export endpoint for admins.
 
-- [x] Update `docs/README.md` reading order with all new documents
-- [x] Normalize links to repository-relative paths
-- [ ] Add docs versioning/changelog section
-- [ ] Add glossary for domain and security terms
+## Phase 7 — Room, Pricing, and Site Configuration
 
+- [ ] Implement room listing endpoints.
+- [ ] Implement admin room CRUD endpoints.
+- [ ] Implement room settings/time-slots endpoints.
+- [ ] Implement pricing retrieval endpoint.
+- [ ] Implement pricing calculation endpoint.
+- [ ] Implement discount rules endpoint.
+- [ ] Implement public site-config endpoint.
+- [ ] Implement admin site-config update endpoint.
 
-## Epic 8: Automated Testing Program
+## Phase 8 — Frontend Application
 
-- [x] Add automated testing strategy (`14-automated-testing-strategy.md`)
-- [ ] Define per-service test ownership map
-- [ ] Define test data management strategy
-- [ ] Define CI runtime budget and parallelization strategy
+- [ ] Create frontend app shell and routing.
+- [ ] Implement auth state management.
+- [ ] Implement API client with auth + language headers.
+- [ ] Implement calendar page (desktop + mobile behavior).
+- [ ] Implement bookings page (my bookings + create booking).
+- [ ] Implement unified booking form (single/multi-slot/recurring).
+- [ ] Implement profile page and profile update.
+- [ ] Implement admin pages (users/bookings/rooms/dashboard).
+- [ ] Implement booking status and cancellation pages.
+- [ ] Implement language switcher and backend translation loading.
+- [ ] Implement site-config context and dynamic metadata.
 
-## Current Sprint Focus
+## Phase 9 — Email and Notifications
 
-1. Finalize security + env governance docs.
-2. Add missing templates (ADR, handoff checklist, threat model).
-3. Update index/readme and ensure consistent navigation.
+- [ ] Implement email transport integration.
+- [ ] Implement welcome email flow.
+- [ ] Implement admin notification for new pending users.
+- [ ] Implement booking confirmation email flow.
+- [ ] Implement admin notification for booking events.
+- [ ] Implement activation email flow.
+- [ ] Implement cancellation email flow.
 
-## Notes
+## Phase 10 — Security Hardening (ASVS-Oriented)
 
-- This repository is documentation-first and language-agnostic.
-- User must still choose main programming language at implementation phase.
-- All sensitive values must remain externalized (ENV/secret manager).
+- [ ] Enforce authorization on all protected endpoints.
+- [ ] Enforce strict input validation on all API boundaries.
+- [ ] Ensure secure password policy and hashing settings.
+- [ ] Ensure token/session lifecycle controls are configured.
+- [ ] Ensure no sensitive data leaks in logs/errors.
+- [ ] Configure security headers and HTTPS-only production behavior.
+- [ ] Implement abuse protections (rate limit, brute-force controls).
+- [ ] Create threat model and abuse-case checklist.
+
+## Phase 11 — Automated Testing
+
+- [ ] Add unit tests for domain and service logic.
+- [ ] Add integration tests for repositories and auth flow.
+- [ ] Add API contract tests for all endpoints.
+- [ ] Add end-to-end tests for critical user/admin flows.
+- [ ] Add security-focused tests (authz, validation, leakage).
+- [ ] Add CI pipeline to run automated tests on every PR.
+- [ ] Set coverage targets and enforce thresholds.
+
+## Phase 12 — Observability and Operations
+
+- [ ] Add structured logging.
+- [ ] Add request tracing/correlation IDs.
+- [ ] Add metrics and health dashboards.
+- [ ] Add alerting strategy for failures and performance.
+- [ ] Add backup and restore process for persistent data.
+- [ ] Add incident response runbook.
+
+## Phase 13 — Release Readiness
+
+- [ ] Validate all required env vars in target environment.
+- [ ] Validate dockerized deployment end-to-end.
+- [ ] Validate security checklist and ASVS mapping.
+- [ ] Validate user flows against acceptance criteria.
+- [ ] Validate admin flows and export/reporting behavior.
+- [ ] Prepare rollback strategy.
+- [ ] Prepare release notes.
+
+## Phase 14 — Post-Release Improvements
+
+- [ ] Collect user feedback and bug reports.
+- [ ] Prioritize backlog for UX/performance/security improvements.
+- [ ] Plan iterative enhancements (payments, notifications, advanced analytics).
+- [ ] Re-run threat model after major feature changes.
