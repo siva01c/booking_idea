@@ -27,7 +27,7 @@ Entry point:
 
 ## Startup Pipeline
 
-1. `dotenv.config()`
+1. runtime environment loader initializes
 2. environment validation
 3. config service loads YAML-backed config
 4. Express middlewares initialize
