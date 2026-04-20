@@ -77,7 +77,7 @@ Highest priority first:
 
 ### Runtime
 
-- `NODE_ENV` or equivalent runtime environment marker (required)
+- `ENV` runtime environment marker (required)
 - `APP_BASE_URL` (required)
 - `API_BASE_URL` (required)
 
