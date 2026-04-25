@@ -1,9 +1,5 @@
 # Cazuá Booking System Documentation
 
-This folder documents the current project as implemented in this repository without changing the application code.
-
-The goal of this documentation set is to make the system understandable enough that another engineer, or an AI coding agent, can rebuild it from scratch while preserving the same architecture, behaviors, objects, and feature boundaries.
-
 ## What This Repository Is (Programming Concept)
 
 This repository is a **documentation-first blueprint** for building a booking system with AI agents.
